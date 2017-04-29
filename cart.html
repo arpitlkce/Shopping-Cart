@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>My Cart </title>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="./node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
 	<link href="css/responsive.css" rel="stylesheet">
 	<link href="css/main.css" rel="stylesheet">
     <!--[if lt IE 9]>
@@ -36,10 +36,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						
-
-						
-						
+					
 					</tbody>
 				</table>
 			</div>
@@ -144,7 +141,82 @@
 </body>
     <script src="js/jquery.js"></script>
     <script src="js/html5shiv.js"></script>
-	  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.min.js"></script>
+	<script src="js/helper.js"></script>
 
- <script src="js/main.js"></script>
+	<script id="modal-template" type="text/x-handlebars-template">
+      	<div class="product-details">
+      		<div class="col-sm-7  col-xs-7">
+				<div class="product-information">
+					<ul>
+						<hr/>
+							<li><h2 class="nameHeading">{{modalData.p_name}}</h2></li>
+							<li><div><sup>$</sup><span class="modalPrice">{{modalData.p_price}}<span></div></li>
+						<hr/>
+							<li><h2 class="nameDetails">{{modalData.p_name}}</h2></li>
+							<li>
+								{{#each modalData.p_available_options.colors}}
+	 							<div class="squareHolder"><button class="square" style="background-color:{{hexcode}}"></button><div class="squareDesc">{{name}}</div></div>
+	 							{{/each}}
+	 						</li>
+	 						<li>
+								<div class="btn-group squareBox">
+									<select id="size">
+										{{#each modalData.p_available_options.sizes}}
+											<option value={{code}} {{#if (compare name ../modalData.p_selected_size.name)}} selected{{/if}}>{{name}}</option>
+										{{/each}}
+									</select>
+								</div>
+								<div class="btn-group">
+									<select id="qty">
+										{{#times 5}}
+										  <option value={{this}} {{#if (compare this ../modalData.p_quantity)}} selected{{/if}}>{{this}}</option>
+										{{/times}}
+									</select>
+								</div>
+							</li>
+							<li><button type="button"  id = "closeModal" class="btn btn-default editButton noRadius ">Edit</button></li>
+							<li><a>See Product details</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-sm-5 col-xs-5">
+				<div class="view-product"><a href=""><img src={{modalData.p_img}} alt=""></a></div>
+			</div>
+		</div>
+  	</script>
+
+  	<script id="row-template" type="text/x-handlebars-template">
+  		{{#each data}}
+				<tr> 
+							<td class="col-sm-3 col-xs-7 cart_product">
+								<a href="#"><img src={{p_img}} alt=""></a>
+							</td>
+							<td class="col-sm-6 col-xs-2 cart_description">
+								<h4><a href="#">{{p_variation}} {{p_name}}</a></h4>
+								<p>Style #: {{p_style}}</p>
+								<p>Color: {{p_selected_color.name}}</p>
+								<div class="align" id={{p_id}}>
+								<a  id ="editModal" class="glyphicon glyphicon-edit" href="#"></a> |
+								<a id = "removeItem" class="glyphicon glyphicon-trash" href="#" ></a> |
+								<a href="">Save for Later</a></div>
+							</td>
+							<td class=" col-sm-1 col-xs-1 cart_price">
+								<p>{{p_selected_size.code}}</p>
+							</td>
+							<td class=" col-sm-1 col-xs-1 cart_quantity">
+								<div class="cart_quantity_button">
+									<input class="cart_quantity_input" type="text" name="quantity" value={{p_quantity}} autocomplete="off" size="2">
+								</div>
+							</td>
+							<td class=" col-sm-1 col-xs-1 cart_total">
+								<p class="cart_total_price"><sup>{{c_currency}}</sup>{{multiply p_quantity p_price}}</p>
+							</td>
+						</tr>
+		{{/each}}
+  	</script>
+
+
+ 	<script src="js/main.js"></script>
 </html>

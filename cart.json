@@ -37,6 +37,7 @@
 				"code": "xl"
 			}]
 		},
+		"p_img":"assets/T1.jpg",
 		"p_quantity": 1,
 		"p_originalprice": 11.0,
 		"p_price": 11.0,
@@ -79,6 +80,7 @@
 				"code": "xl"
 			}]
 		},
+		"p_img":"assets/T2.jpg",
 		"p_quantity": 1,
 		"p_originalprice": 17.0,
 		"p_price": 17.0,
@@ -121,6 +123,7 @@
 				"code": "xl"
 			}]
 		},
+		"p_img":"assets/T3.jpg",
 		"p_quantity": 1,
 		"p_originalprice": 21.0,
 		"p_price": 9.0,
@@ -163,6 +166,7 @@
 				"code": "xl"
 			}]
 		},
+		"p_img":"assets/T4.jpg",
 		"p_quantity": 1,
 		"p_originalprice": 22.0,
 		"p_price": 22.0,
